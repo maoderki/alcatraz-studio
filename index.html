@@ -1,0 +1,657 @@
+<!doctype html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Alcatraz Studio</title>
+    <link rel="icon" href="https://www.alcatrazgroup.com/wp-content/uploads/2021/11/cropped-alcatraz-ico-32x32.png"
+        sizes="32x32" />
+    <link rel="icon" href="https://www.alcatrazgroup.com/wp-content/uploads/2021/11/cropped-alcatraz-ico-192x192.png"
+        sizes="192x192" />
+    <link rel="apple-touch-icon"
+        href="https://www.alcatrazgroup.com/wp-content/uploads/2021/11/cropped-alcatraz-ico-180x180.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/css/tom-select.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/js/tom-select.complete.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/nano.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js"></script>
+    <script>
+        window.__STUDIO_APP_VERSION = '1.4.000000000082';
+
+        (function applyInitialStudioTheme() {
+            const storageKey = 'alcatraz_studio_theme';
+            const savedTheme = localStorage.getItem(storageKey);
+            const preferredTheme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+            document.documentElement.dataset.theme = savedTheme || preferredTheme;
+        }());
+
+        function studioAssetUrl(path) {
+            const version = encodeURIComponent(window.__STUDIO_APP_VERSION || '1.0.0');
+            return `${path}?v=${version}`;
+        }
+
+        document.write(`<link rel="stylesheet" href="${studioAssetUrl('style.css')}">`);
+    </script>
+
+</head>
+
+<body>
+    <div class="app" id="appShell">
+        <header class="shell topbar">
+            <div class="topbar-main">
+                <div class="brand" id="brandHomeBtn" title="Alcatraz Studio">
+                    <img src="img/logo-dark.png" height="25" id="brandLogo" alt="Alcatraz Studio logosu">
+                    <span class="header-separator">|</span>
+                    <span class="header-studio-text">Studio</span>
+                </div>
+                <nav class="topbar-nav" aria-label="Uygulama menuleri">
+                    <div class="file-menu" data-menu="file">
+                        <button class="file-menu-btn" type="button" onclick="toggleFileMenu('file')">
+                            <span>Dosya</span>
+                            <i class="fa-solid fa-chevron-down menu-caret"></i>
+                        </button>
+                        <div class="file-dropdown">
+                            <button class="file-item" onclick="newProject()"><i class="fa-solid fa-file"></i> Yeni<span
+                                    class="file-hint">Alt+N</span></button>
+                            <button class="file-item" onclick="openProject()"><i class="fa-solid fa-folder-open"></i>
+                                Aç<span class="file-hint">Alt+O</span></button>
+                            <button class="file-item" onclick="openTemplatesModal()"><i
+                                    class="fa-solid fa-table-cells-large"></i>
+                                Şablonlar</button>
+                            <div class="file-sep"></div>
+                            <button class="file-item" onclick="exportProject()"><i class="fa-solid fa-file-export"></i>
+                                Kaydet<span class="file-hint">Ctrl+S</span></button>
+                            <button class="file-item" id="exportBtn"><i class="fa-solid fa-file-export"></i>
+                                Dışa Aktar<span class="file-hint">Ctrl+Shift+S</span></button>
+                            <div class="file-sep mobile-file-only"></div>
+                            <button class="file-item mobile-file-only" type="button"
+                                onclick="openMobileWorkspacePickerModal()">
+                                <i class="fa-solid fa-sliders"></i> Arayüzü Düzenle
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="file-menu" data-menu="plugins">
+                        <button class="file-menu-btn" type="button" onclick="toggleFileMenu('plugins')">
+                            <span>Eklentiler</span>
+                            <i class="fa-solid fa-chevron-down menu-caret"></i>
+                        </button>
+                        <div class="file-dropdown">
+                            <div id="pluginsMenuItems">
+                                <div class="file-item" style="color:var(--muted);cursor:default;">
+                                    <i class="fa-solid fa-puzzle-piece"></i> Eklentiler yükleniyor...
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="file-menu" data-menu="workspace">
+                        <button class="file-menu-btn" type="button" onclick="toggleFileMenu('workspace')">
+                            <span>Arayüz</span>
+                            <i class="fa-solid fa-chevron-down menu-caret"></i>
+                        </button>
+                        <div class="file-dropdown">
+                            <button class="file-item" type="button" onclick="openWorkspaceModal()">
+                                <i class="fa-solid fa-sliders"></i> Arayüzü Düzenle
+                            </button>
+                            <div class="file-sep"></div>
+                            <button class="file-item" type="button" onclick="applyWorkspacePresetById('default')">
+                                <i class="fa-solid fa-table-columns"></i> Varsayılan Workspace
+                            </button>
+                            <button class="file-item" type="button" onclick="applyWorkspacePresetById('design')">
+                                <i class="fa-solid fa-swatchbook"></i> Tasarım Workspace
+                            </button>
+                            <button class="file-item" type="button" onclick="applyWorkspacePresetById('ai')">
+                                <i class="fa-solid fa-wand-magic-sparkles"></i> AI Workspace
+                            </button>
+                            <button class="file-item" type="button" onclick="applyWorkspacePresetById('mobile')">
+                                <i class="fa-solid fa-mobile-screen-button"></i> Mobil Workspace
+                            </button>
+                        </div>
+                    </div>
+                    <div class="file-menu" data-menu="help">
+                        <button class="file-menu-btn" type="button" onclick="toggleFileMenu('help')">
+                            <span>Yardım</span>
+                            <i class="fa-solid fa-chevron-down menu-caret"></i>
+                        </button>
+                        <div class="file-dropdown">
+                            <button class="file-item" type="button" onclick="openShortcutsModal()">
+                                <i class="fa-solid fa-keyboard"></i> Kısayollar
+                            </button>
+                            <button class="file-item" type="button" onclick="openApiDocsModal()">
+                                <i class="fa-solid fa-code"></i> API
+                            </button>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            <button class="topbar-theme-toggle" id="themeToggleBtn" type="button" aria-label="Temayi degistir"
+                title="Temayi degistir">
+                <i class="fa-solid fa-moon" id="themeToggleIcon" aria-hidden="true"></i>
+            </button>
+            <input type="file" id="projectInput" name="projectFile" accept=".json" hidden>
+        </header>
+        <aside class="shell context-bar" id="contextBar"></aside>
+
+        <aside class="shell toolbar" id="toolbarShell">
+            <input type="file" id="imageInput" name="imageFile" accept="image/*" hidden>
+            <div class="toolbar-static-anchor" style="height:1px;background:var(--border);margin:2px 0;"></div>
+            <div class="color-widget" id="colorWidget" title="Renk seç">
+                <!-- BG renk (stroke) - arkada -->
+                <div class="cw-bg" id="cwBg"></div>
+                <!-- FG renk (fill) - önde -->
+                <div class="cw-fg" id="cwFg"></div>
+                <input type="color" id="cwFgInput" name="foregroundColor" class="cw-native-input" value="#3b82f6"
+                    aria-label="Ön renk seç" style="display:none">
+                <input type="color" id="cwBgInput" name="backgroundColor" class="cw-native-input" value="#000000"
+                    aria-label="Arka renk seç" style="display:none">
+                <!-- Swap butonu -->
+                <button class="cw-swap" id="cwSwap" title="Renkleri değiştir">
+                    <i class="fa-solid fa-arrow-right-arrow-left"></i>
+                </button>
+            </div>
+        </aside>
+
+        <main class="shell workspace" id="workspaceShell">
+            <div class="workspace-top">
+                <div class="label">Canvas</div>
+            </div>
+
+            <div class="stage-wrap" id="stageWrap">
+                <div class="stage-zoom-controls" aria-label="Canvas yakinlasma kontrolleri">
+                    <button class="stage-btn" id="zoomFitBtn" title="Ekrana sığdır">
+                        <i class="fa-solid fa-expand"></i>
+                    </button>
+                    <button class="stage-btn" id="zoomOutBtn" title="Uzaklaş">
+                        <i class="fa-solid fa-minus"></i>
+                    </button>
+                    <button class="stage-btn stage-zoom-readout" id="zoomResetBtn"
+                        title="Yakınlaşmayı sıfırla">100%</button>
+                    <button class="stage-btn" id="zoomInBtn" title="Yakınlaş">
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
+                </div>
+                <div class="stage empty" id="stage"></div>
+                <div class="transform-overlay" id="transformOverlay"></div>
+            </div>
+            <div class="mobile-voice-fab-wrap" id="mobileVoiceFabWrap" hidden>
+                <div class="mobile-voice-fab-feedback" id="mobileVoiceFabFeedback" hidden></div>
+                <div class="mobile-chat-quick-actions" id="mobileChatQuickActions">
+                    <button class="mobile-chat-quick-action" id="mobileQuickDownloadImageBtn" type="button">
+                        <i class="fa-solid fa-download" aria-hidden="true"></i>
+                        <span>Tasarımı indir</span>
+                    </button>
+                    <button class="mobile-chat-quick-action" id="mobileQuickUploadImageBtn" type="button">
+                        <i class="fa-regular fa-image" aria-hidden="true"></i>
+                        <span>Resim yükle</span>
+                    </button>
+                    <button class="mobile-chat-quick-action" id="mobileQuickImageResizeBtn" type="button">
+                        <i class="fa-solid fa-down-left-and-up-right-to-center" aria-hidden="true"></i>
+                        <span>Resmi sığdır</span>
+                    </button>
+                    <button class="mobile-chat-quick-action" id="mobileQuickSendBackBtn" type="button">
+                        <i class="fa-solid fa-layer-group" aria-hidden="true"></i>
+                        <span>Resmi en arkaya gönder</span>
+                    </button>
+                </div>
+                <div class="mobile-chatbar" id="mobileChatbar">
+                    <button class="mobile-voice-fab" id="mobileVoiceFabBtn" type="button" aria-label="Bas konus">
+                        <i class="fa-solid fa-microphone" id="mobileVoiceFabIcon" aria-hidden="true"></i>
+                    </button>
+                    <textarea class="mobile-chatbar-input" id="mobileChatPrompt" rows="1"
+                        placeholder="Act AI'ye yaz..."></textarea>
+                    <button class="mobile-chatbar-send" id="mobileChatSendBtn" type="button" aria-label="Gonder">
+                        <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="mobile-chat-overlay" id="mobileChatOverlay" aria-live="polite" aria-atomic="false"></div>
+            <button class="mobile-tools-fab" id="mobileToolsFab" type="button" aria-label="Araçları aç" hidden>
+                <i class="fa-solid fa-arrow-pointer" id="mobileToolsFabIcon" aria-hidden="true"></i>
+            </button>
+            <div class="mobile-floating-panels" id="mobileFloatingPanels" hidden></div>
+            <div class="workspace-bottom-dock" id="workspaceBottomDock" hidden></div>
+        </main>
+
+        <aside class="shell inspector" id="inspectorShell">
+            <div class="inspector-tools" id="inspectorTools">
+            </div>
+
+            <div class="inspector-dock" id="inspectorDock">
+                <section class="panel dock-widget dock-widget-swatches" id="swatchesWidget" hidden>
+                    <div class="dock-widget-header">
+                        <div>
+                            <div class="label">Swatches</div>
+                            <div class="dock-widget-subtitle">Hızlı renk geçişleri</div>
+                        </div>
+                    </div>
+                    <div class="dock-widget-body" id="swatchesWidgetBody"></div>
+                </section>
+
+                <section class="panel dock-widget" id="layersWidget">
+                    <div class="dock-widget-header">
+                        <div>
+                            <div class="label">Katmanlar</div>
+                            <div class="dock-widget-subtitle">Sıralama ve görünürlük</div>
+                        </div>
+                    </div>
+                    <div class="layer-toolbar mb-3">
+                        <button class="mini-btn layer-action-btn" id="createBtn" title="Katman Ekle">
+                            <i class="fa-regular fa-plus"></i>
+                        </button>
+                        <button class="mini-btn layer-action-btn" id="duplicateBtn" title="Kopyala">
+                            <i class="fa-regular fa-copy"></i>
+                        </button>
+                        <button class="mini-btn layer-action-btn" id="groupBtn" title="Grupla">
+                            <i class="fa-solid fa-folder-plus"></i>
+                        </button>
+                        <button class="mini-btn layer-action-btn" id="visibilityBtn" title="Gizle / Göster">
+                            <i class="fa-regular fa-eye" id="visibilityBtnIcon"></i>
+                        </button>
+                        <button class="mini-btn layer-action-btn" id="lockBtn" title="Kilitle / Kilidi Aç">
+                            <i class="fa-solid fa-lock-open" id="lockBtnIcon"></i>
+                        </button>
+                        <button class="mini-btn layer-action-btn" id="deleteBtn" title="Sil">
+                            <i class="fa-regular fa-trash-can"></i>
+                        </button>
+                    </div>
+                    <div class="layer-list" id="layerList"></div>
+                </section>
+            </div>
+            <div class="inspector-flyout" id="inspectorFlyout">
+                <div class="flyout-header">
+                    <div class="flyout-title" id="flyoutTitle">Yazı</div>
+                    <button class="flyout-close" id="flyoutClose">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+                <div class="flyout-body" id="flyoutBody"></div>
+            </div>
+        </aside>
+    </div>
+
+    <div class="app-modal-backdrop" id="shortcutsModal" hidden>
+        <div class="app-modal shortcuts-modal" role="dialog" aria-modal="true" aria-labelledby="shortcutsModalTitle">
+            <div class="app-modal-header">
+                <div>
+                    <div class="app-modal-title" id="shortcutsModalTitle">Kısayollar</div>
+                    <div class="app-modal-subtitle">Şu anda aktif olan klavye kısayolları</div>
+                </div>
+                <button class="app-modal-close" type="button" id="shortcutsModalClose" aria-label="Kapat">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="app-modal-body" id="shortcutsModalBody"></div>
+        </div>
+    </div>
+
+    <div class="app-modal-backdrop" id="apiDocsModal" hidden>
+        <div class="app-modal api-docs-modal" role="dialog" aria-modal="true" aria-labelledby="apiDocsModalTitle">
+            <div class="app-modal-header">
+                <div>
+                    <div class="app-modal-title" id="apiDocsModalTitle">API</div>
+                    <div class="app-modal-subtitle" id="apiDocsModalSubtitle">AI ve dış istemciler için aktif çalışma
+                        komut akışı</div>
+                </div>
+                <button class="app-modal-close" type="button" id="apiDocsModalClose" aria-label="Kapat">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="app-modal-body" id="apiDocsModalBody"></div>
+        </div>
+    </div>
+
+    <div class="app-modal-backdrop" id="newProjectModal" hidden>
+        <div class="app-modal new-project-modal" role="dialog" aria-modal="true" aria-labelledby="newProjectModalTitle">
+            <div class="app-modal-header">
+                <div>
+                    <div class="app-modal-title" id="newProjectModalTitle">Yeni Proje</div>
+                    <div class="app-modal-subtitle">Tuval boyutunu seç, projeyi o ölçüde sıfırdan başlatalım.</div>
+                </div>
+                <button class="app-modal-close" type="button" id="newProjectModalClose" aria-label="Kapat">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="app-modal-body">
+                <div class="new-project-layout">
+                    <div class="new-project-section">
+                        <div class="new-project-section-label">Standart Ölçüler</div>
+                        <div class="new-project-presets">
+                            <button class="ratio-chip new-project-size-chip" type="button"
+                                data-canvas-size-preset="1080x1080">1:1</button>
+                            <button class="ratio-chip new-project-size-chip" type="button"
+                                data-canvas-size-preset="1080x1350">4:5</button>
+                            <button class="ratio-chip new-project-size-chip" type="button"
+                                data-canvas-size-preset="1080x1920">9:16</button>
+                        </div>
+                    </div>
+
+                    <div class="new-project-section">
+                        <div class="new-project-section-label">Özel Boyut</div>
+                        <div class="size-custom new-project-custom-size">
+                            <input id="newProjectWidthInput" name="newProjectWidth" class="size-input text-center"
+                                type="number" min="100" value="1080">
+                            <span class="size-sep">×</span>
+                            <input id="newProjectHeightInput" name="newProjectHeight" class="size-input text-center"
+                                type="number" min="100" value="1080">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="new-project-actions">
+                    <button class="plugin-primary-btn new-project-create-btn" type="button"
+                        id="newProjectCreateBtn">Projeyi Oluştur</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="app-modal-backdrop" id="templatesModal" hidden>
+        <div class="app-modal templates-modal" role="dialog" aria-modal="true" aria-labelledby="templatesModalTitle">
+            <div class="app-modal-header">
+                <div>
+                    <div class="app-modal-title" id="templatesModalTitle">Şablonlar</div>
+                    <div class="app-modal-subtitle" id="templatesModalSubtitle">Templates klasorundeki hazir tasarimlari
+                        aç.</div>
+                </div>
+                <button class="app-modal-close" type="button" id="templatesModalClose" aria-label="Kapat">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="app-modal-body" id="templatesModalBody"></div>
+        </div>
+    </div>
+
+    <div class="app-modal-backdrop" id="pluginModal" hidden>
+        <div class="app-modal plugin-modal" role="dialog" aria-modal="true" aria-labelledby="pluginModalTitle">
+            <div class="app-modal-header">
+                <div>
+                    <div class="app-modal-title" id="pluginModalTitle">Eklenti</div>
+                    <div class="app-modal-subtitle" id="pluginModalSubtitle"></div>
+                </div>
+                <button class="app-modal-close" type="button" id="pluginModalClose" aria-label="Kapat">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="app-modal-body" id="pluginModalBody"></div>
+        </div>
+    </div>
+
+    <div class="mobile-tools-modal" id="mobileToolsModal" hidden>
+        <div class="mobile-tools-sheet" role="dialog" aria-modal="true" aria-labelledby="mobileToolsModalTitle">
+            <div class="mobile-tools-header">
+                <div>
+                    <div class="mobile-tools-title" id="mobileToolsModalTitle">Araçlar</div>
+                    <div class="mobile-tools-subtitle">Aktif aracı seç</div>
+                </div>
+                <button class="mobile-tools-close" id="mobileToolsModalClose" type="button" aria-label="Kapat">
+                    <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+                </button>
+            </div>
+            <div class="mobile-tools-grid" id="mobileToolsGrid"></div>
+        </div>
+    </div>
+
+    <div class="mobile-tools-modal mobile-workspace-picker-modal" id="mobileWorkspacePickerModal" hidden>
+        <div class="mobile-tools-sheet" role="dialog" aria-modal="true"
+            aria-labelledby="mobileWorkspacePickerModalTitle">
+            <div class="mobile-tools-header">
+                <div>
+                    <div class="mobile-tools-title" id="mobileWorkspacePickerModalTitle">Mobil Arayüz</div>
+                    <div class="mobile-tools-subtitle">Uçan panel ve eklentileri seç</div>
+                </div>
+                <button class="mobile-tools-close" id="mobileWorkspacePickerModalClose" type="button"
+                    aria-label="Kapat">
+                    <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+                </button>
+            </div>
+            <div class="mobile-workspace-picker-list" id="mobileWorkspacePickerList"></div>
+        </div>
+    </div>
+
+    <div class="mobile-tools-modal mobile-panel-modal" id="mobilePanelModal" hidden>
+        <div class="mobile-tools-sheet mobile-panel-sheet" role="dialog" aria-modal="true"
+            aria-labelledby="mobilePanelModalTitle">
+            <div class="mobile-tools-header">
+                <div>
+                    <div class="mobile-tools-title" id="mobilePanelModalTitle">Panel</div>
+                    <div class="mobile-tools-subtitle" id="mobilePanelModalSubtitle"></div>
+                </div>
+                <button class="mobile-tools-close" id="mobilePanelModalClose" type="button" aria-label="Kapat">
+                    <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+                </button>
+            </div>
+            <div class="mobile-panel-body" id="mobilePanelModalBody"></div>
+        </div>
+    </div>
+
+    <div class="app-modal-backdrop" id="workspaceModal" hidden>
+        <div class="app-modal workspace-modal" role="dialog" aria-modal="true" aria-labelledby="workspaceModalTitle">
+            <div class="app-modal-header">
+                <div>
+                    <div class="app-modal-title" id="workspaceModalTitle">Arayüzü Düzenle</div>
+                    <div class="app-modal-subtitle">Workspace düzeni, dock paneller ve tema presetlerini yönet.</div>
+                </div>
+                <button class="app-modal-close" type="button" id="workspaceModalClose" aria-label="Kapat">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="app-modal-body">
+                <div class="workspace-editor-grid">
+                    <div class="workspace-editor-topgrid">
+                        <section class="workspace-editor-section">
+                            <div class="workspace-editor-label">Presetler</div>
+                            <div class="workspace-preset-list" id="workspacePresetList"></div>
+                        </section>
+
+                        <section class="workspace-editor-section">
+                            <div class="workspace-editor-label">Yerleşim</div>
+                            <div class="workspace-form-grid">
+                                <label class="workspace-field">
+                                    <span>Arayüz stili</span>
+                                    <select id="workspaceShellStyle"></select>
+                                </label>
+                                <label class="workspace-field">
+                                    <span>Tema</span>
+                                    <select id="workspaceThemeSelect"></select>
+                                </label>
+                                <label class="workspace-field">
+                                    <span>Toolbar konumu</span>
+                                    <select id="workspaceToolbarPosition"></select>
+                                </label>
+                                <div class="workspace-range-field">
+                                    <span>Sağ panel genişliği</span>
+                                    <input id="workspaceInspectorWidth" type="range" min="260" max="520" step="10">
+                                    <div class="workspace-range-readout" id="workspaceInspectorWidthValue">320 px</div>
+                                </div>
+                                <div class="workspace-range-field">
+                                    <span>Alt panel yüksekliği</span>
+                                    <input id="workspaceBottomDockHeight" type="range" min="140" max="340" step="10">
+                                    <div class="workspace-range-readout" id="workspaceBottomDockHeightValue">220 px
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+
+                    <section class="workspace-editor-section">
+                        <div class="workspace-editor-label">Builder</div>
+                        <div class="workspace-builder-layout">
+                            <div class="workspace-builder-sidebar">
+                                <div class="workspace-builder-palette-block">
+                                    <div class="workspace-builder-subtitle">Tüm Bileşenler</div>
+                                    <input class="workspace-builder-search" id="workspaceDockSearch" type="search"
+                                        placeholder="Bileşen ara">
+                                    <div class="workspace-builder-palette" id="workspaceDockPalette"></div>
+                                </div>
+                            </div>
+
+                            <div class="workspace-builder-canvas">
+                                <div class="workspace-builder-preview-top">Topbar</div>
+                                <div class="workspace-builder-preview-context">Context Bar</div>
+                                <div class="workspace-builder-preview-body">
+                                    <div class="workspace-builder-preview-stage">
+                                        <div class="workspace-builder-canvas-card">
+                                            <div class="workspace-builder-canvas-title">Canvas</div>
+                                            <div class="workspace-builder-canvas-copy">Bileşenleri sürükleyip
+                                                sağa, alta ya da flyout'a bırak.</div>
+                                        </div>
+                                        <div class="workspace-builder-dropzone workspace-builder-dropzone-flyout"
+                                            id="workspaceFlyoutZone" data-zone="flyout">
+                                            <div class="workspace-builder-zone-title">Flyout İkonları</div>
+                                        </div>
+                                        <div class="workspace-builder-dropzone" id="workspaceRightZone"
+                                            data-zone="right">
+                                            <div class="workspace-builder-zone-title">Sağ Dock</div>
+                                        </div>
+                                    </div>
+                                    <div class="workspace-builder-dropzone workspace-builder-dropzone-bottom"
+                                        id="workspaceBottomZone" data-zone="bottom">
+                                        <div class="workspace-builder-zone-title">Alt Panel</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                </div>
+                <div class="new-project-actions">
+                    <button class="mini-btn" type="button" id="workspaceResetBtn">Sıfırla</button>
+                    <button class="plugin-primary-btn new-project-create-btn" type="button"
+                        id="workspaceApplyBtn">Kaydet ve Uygula</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="app-modal-backdrop" id="layerStyleModal" hidden>
+        <div class="app-modal layer-style-modal" role="dialog" aria-modal="true" aria-labelledby="layerStyleModalTitle">
+            <div class="app-modal-header">
+                <div>
+                    <div class="app-modal-title" id="layerStyleModalTitle">Katman Stili</div>
+                    <div class="app-modal-subtitle" id="layerStyleModalSubtitle">Katman efektleri ve blending
+                        seçenekleri</div>
+                </div>
+                <button class="app-modal-close" type="button" id="layerStyleModalClose" aria-label="Kapat">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="app-modal-body" id="layerStyleModalBody"></div>
+        </div>
+    </div>
+
+    <div class="app-modal-backdrop" id="exportPreviewModal" hidden>
+        <div class="app-modal export-preview-modal" role="dialog" aria-modal="true"
+            aria-labelledby="exportPreviewModalTitle">
+            <div class="app-modal-header">
+                <div>
+                    <div class="app-modal-title" id="exportPreviewModalTitle">Gorsel Hazir</div>
+                    <div class="app-modal-subtitle">iPhone'da galeriye kaydetmek icin gorsele uzun basabilirsin.</div>
+                </div>
+                <button class="app-modal-close" type="button" id="exportPreviewModalClose" aria-label="Kapat">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="app-modal-body export-preview-body">
+                <div class="export-preview-frame">
+                    <img id="exportPreviewImage" class="export-preview-image" alt="Disa aktarilan tasarim onizlemesi">
+                </div>
+                <div class="export-preview-actions">
+                    <button class="ctx-btn" type="button" id="exportPreviewShareBtn">
+                        <i class="fa-solid fa-share-nodes"></i> Paylas
+                    </button>
+                    <button class="ctx-btn" type="button" id="exportPreviewDownloadBtn">
+                        <i class="fa-solid fa-download"></i> Dosyalara Kaydet
+                    </button>
+                </div>
+                <div class="export-preview-note">
+                    Ipucu: Fotoğraflar'a atmak icin gorselin ustune uzun basip <strong>Save to Photos</strong>
+                    secenegini kullan.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="canvas-context-menu" id="canvasContextMenu" hidden>
+        <button class="canvas-context-menu-item" id="canvasContextMenuEditBtn" type="button">
+            <i class="fa-solid fa-pen-to-square"></i>
+            <span>Düzenle</span>
+            <span class="canvas-context-menu-hint">Option/Alt+T</span>
+        </button>
+        <button class="canvas-context-menu-item" id="canvasContextMenuPasteBtn" type="button">
+            <i class="fa-solid fa-paste"></i>
+            <span>Yapıştır</span>
+            <span class="canvas-context-menu-hint">Cmd/Ctrl+V</span>
+        </button>
+        <button class="canvas-context-menu-item" id="canvasContextMenuClearSelectionBtn" type="button">
+            <i class="fa-solid fa-ban"></i>
+            <span>Seçimi Kaldır</span>
+            <span class="canvas-context-menu-hint">Option/Alt+D</span>
+        </button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dom-to-image-more@3.4.0/dist/dom-to-image-more.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script>
+    <script>
+        (function preventAccidentalBackNavigation() {
+            const isEmbeddedStudio = new URLSearchParams(window.location.search).get('embed') === '1';
+            if (isEmbeddedStudio) return;
+
+            const guardState = { studioBackGuard: true };
+            let resettingHistory = false;
+
+            history.pushState(guardState, '', location.href);
+
+            window.addEventListener('popstate', () => {
+                if (resettingHistory) {
+                    return;
+                }
+
+                resettingHistory = true;
+                alert('Bu sayfada tasarım yapıyorsun. Geri gitme kapatıldı.');
+                history.pushState(guardState, '', location.href);
+
+                setTimeout(() => {
+                    resettingHistory = false;
+                }, 0);
+            });
+        }());
+    </script>
+    <script>
+        [
+            'core/dom.js',
+            'core/state.js',
+            'core/resources.js',
+            'core/history.js',
+            'core/plugins.js',
+            'features/workspace.js',
+            'core/app-state.js',
+            'features/brush-cursor.js',
+            'engine/init.js',
+            'features/shortcuts.js',
+            'features/canvas.js',
+            'features/layers.js',
+            'features/selection.js',
+            'features/context-bar.js',
+            'features/color-widget.js',
+            'features/eyedropper.js',
+            'features/gradient-editor.js',
+            'features/assets.js',
+            'features/controls.js',
+            'core/project.js',
+            'features/layer-style.js',
+            'features/toolbar.js',
+            'features/stage-interactions.js',
+            'features/embed-bridge.js',
+            'core/globals.js'
+        ].forEach(path => {
+            document.write(`<script src="${studioAssetUrl(path)}"><\/script>`);
+        });
+    </script>
+</body>
+
+</html>

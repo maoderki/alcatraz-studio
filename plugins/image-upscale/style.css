@@ -1,0 +1,104 @@
+.image-upscale-plugin {
+    gap: 16px;
+}
+
+.image-upscale-plugin .upscale-hero {
+    display: grid;
+    gap: 12px;
+    padding: 18px;
+    border-radius: 22px;
+    border: 1px solid var(--border);
+    background:
+        radial-gradient(circle at top right, rgba(14,165,233,.18), transparent 38%),
+        linear-gradient(180deg, var(--control-bg), var(--panel-soft));
+}
+
+.image-upscale-plugin .upscale-hero-title {
+    color: var(--text-strong);
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: -.02em;
+}
+
+.image-upscale-plugin .upscale-hero-copy {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.image-upscale-plugin .upscale-stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.image-upscale-plugin .upscale-stat {
+    padding: 14px;
+    border-radius: 18px;
+    border: 1px solid var(--border);
+    background: var(--panel-soft);
+}
+
+.image-upscale-plugin .upscale-stat-label {
+    margin-bottom: 6px;
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+}
+
+.image-upscale-plugin .upscale-stat-value {
+    color: var(--text-strong);
+    font-size: 16px;
+    font-weight: 800;
+    letter-spacing: -.02em;
+}
+
+.image-upscale-plugin .upscale-meta {
+    display: grid;
+    gap: 10px;
+    padding: 14px;
+    border-radius: 18px;
+    border: 1px solid var(--border);
+    background: var(--panel-soft);
+}
+
+.image-upscale-plugin .upscale-meta-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    font-size: 13px;
+}
+
+.image-upscale-plugin .upscale-meta-row span:first-child {
+    color: var(--muted);
+}
+
+.image-upscale-plugin .upscale-meta-row strong {
+    color: var(--text-strong);
+    text-align: right;
+}
+
+.image-upscale-plugin .upscale-hint {
+    padding: 12px 14px;
+    border-radius: 16px;
+    border: 1px solid rgba(37,99,235,.22);
+    background: rgba(37,99,235,.08);
+    color: var(--text);
+    font-size: 13px;
+    line-height: 1.55;
+}
+
+@media (max-width: 760px) {
+    .image-upscale-plugin .upscale-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .image-upscale-plugin .upscale-meta-row {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 4px;
+    }
+}

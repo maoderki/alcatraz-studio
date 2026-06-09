@@ -1,0 +1,22 @@
+[
+  { "name": "Jigsaw", "path": "M10 0h2v2h-2V0zm-2 2h2v2H8V2zm0 4h2v2H8V6zm2 2h2v2h-2V8zm0 4h2v2h-2v-2zm-2 2h2v2H8v-2zm0 4h2v2H8v-2zm2 2h2v2h-2v-2z", "width": 20, "height": 20 },
+  { "name": "Circuit Board", "path": "M0 0h2v2H0V0zm4 4h2v2H4V4zm4 4h2v2H8V8zm4 4h2v2h-2v-2zm4 4h2v2h-2v-2z", "width": 16, "height": 16 },
+  { "name": "Polka Dots", "path": "M10 10a5 5 0 1 1-10 0 5 5 0 0 1 10 0z", "width": 20, "height": 20 },
+  { "name": "Floating Cogs", "path": "M10 0l2 2h2l2 2v2l-2 2v2l2 2v2l-2 2h-2l-2 2h-2l-2-2h-2l-2-2v-2l2-2v-2l-2-2v-2l2-2h2l2-2h2z", "width": 24, "height": 24 },
+  { "name": "Rain", "path": "M1 1h2v2H1V1zm4 4h2v2H5V5zm4 4h2v2H9V9zm4 4h2v2h-2v-2z", "width": 16, "height": 16 },
+  { "name": "Diagonal Lines", "path": "M-1 1l2-2M0 10L10 0M9 11l2-2", "width": 10, "height": 10 },
+  { "name": "Checkerboard", "path": "M0 0h10v10H0V0zm10 10h10v10H10V10z", "width": 20, "height": 20 },
+  { "name": "Anchors Away", "path": "M10 4V0h4v4h-4zM2 10V6h4v4H2zm16 0V6h4v4h-4zm-8 8v-4h4v4h-4z", "width": 24, "height": 24 },
+  { "name": "Brick Wall", "path": "M0 0h19v9H0V0zm20 0h19v9H20V0zM0 10h9v9H0v-9zm10 0h19v9H10v-9z", "width": 40, "height": 20 },
+  { "name": "Charlie Brown", "path": "M0 0l5 5L0 10V0zm20 0l-5 5 5 5V0z", "width": 20, "height": 10 },
+  { "name": "Clouds", "path": "M10 10c0-5.5 4.5-10 10-10s10 4.5 10 10-4.5 10-10 10-10-4.5-10-10z", "width": 40, "height": 40 },
+  { "name": "Confetti", "path": "M0 0h2v2H0V0zm10 4h2v2h-2V4zm5-4h2v2h-2V0zM4 9h2v2H4V9z", "width": 20, "height": 20 },
+  { "name": "Cubely", "path": "M0 0l10 10M10 0L0 10", "width": 10, "height": 10 },
+  { "name": "Graph Paper", "path": "M1 0V20M0 1H20", "width": 20, "height": 20 },
+  { "name": "Honeycomb", "path": "M10 0l5 2.5v5l-5 2.5-5-2.5v-5l5-2.5z", "width": 20, "height": 20 },
+  { "name": "Leaf", "path": "M10 0c5 0 10 5 10 10s-5 10-10 10S0 15 0 10 5 0 10 0z", "width": 30, "height": 30 },
+  { "name": "Plus Signs", "path": "M10 0v20M0 10h20", "width": 20, "height": 20 },
+  { "name": "Signal", "path": "M0 0h2v2H0V0zm4-4h2v2H4V-4zm4-4h2v2H8V-8z", "width": 20, "height": 20 },
+  { "name": "Topography", "path": "M0 10c5 0 5-5 10-5s5 5 10 5", "width": 20, "height": 10 },
+  { "name": "Zig Zag", "path": "M0 10l5-5 5 5 5-5 5 5", "width": 20, "height": 10 }
+]

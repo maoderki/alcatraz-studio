@@ -1,0 +1,74 @@
+[
+  {
+    "id": "default",
+    "label": "Varsayılan",
+    "description": "Klasik çalışma düzeni. Katmanlar sağda, araçlar solda.",
+    "layout": {
+      "shellStyle": "desktop",
+      "toolbarPosition": "left",
+      "inspectorWidth": 320,
+      "bottomDockHeight": 220,
+      "theme": "dark",
+      "flyoutPanels": [],
+      "widgets": [
+        { "id": "layers", "type": "layers", "title": "Katmanlar", "enabled": true, "region": "right" },
+        { "id": "swatches", "type": "swatches", "title": "Swatches", "enabled": false, "region": "right" }
+      ]
+    }
+  },
+  {
+    "id": "design",
+    "label": "Tasarım",
+    "description": "Renk ve tipografi odaklı. Swatches üstte, araçlar yukarıda.",
+    "layout": {
+      "shellStyle": "desktop",
+      "toolbarPosition": "top",
+      "inspectorWidth": 360,
+      "bottomDockHeight": 220,
+      "theme": "graphite",
+      "flyoutPanels": [
+        { "id": "plugin-google-fonts", "type": "plugin", "pluginId": "google-fonts", "title": "Google Fonts", "enabled": true }
+      ],
+      "widgets": [
+        { "id": "swatches", "type": "swatches", "title": "Swatches", "enabled": true, "region": "right" },
+        { "id": "layers", "type": "layers", "title": "Katmanlar", "enabled": true, "region": "bottom" },
+        { "id": "plugin-google-fonts", "type": "plugin", "pluginId": "google-fonts", "title": "Google Fonts", "enabled": true, "region": "right" }
+      ]
+    }
+  },
+  {
+    "id": "ai",
+    "label": "AI Workspace",
+    "description": "Sesli komut üstte, Act AI sohbeti altta çalışır.",
+    "layout": {
+      "shellStyle": "desktop",
+      "toolbarPosition": "left",
+      "inspectorWidth": 420,
+      "bottomDockHeight": 220,
+      "theme": "ocean",
+      "flyoutPanels": [],
+      "widgets": [
+        { "id": "plugin-voice-command", "type": "plugin", "pluginId": "voice-command", "title": "Sesli Komut", "enabled": true, "region": "right" },
+        { "id": "plugin-act-ai", "type": "plugin", "pluginId": "act-ai", "title": "Act AI", "enabled": true, "region": "right" },
+        { "id": "layers", "type": "layers", "title": "Katmanlar", "enabled": false, "region": "right" }
+      ]
+    }
+  },
+  {
+    "id": "mobile",
+    "label": "Mobil",
+    "description": "Mobil kullanım için sade görünüm. Sadece logo, tema butonu ve canvas görünür.",
+    "layout": {
+      "shellStyle": "mobile",
+      "toolbarPosition": "left",
+      "inspectorWidth": 320,
+      "bottomDockHeight": 220,
+      "theme": "dark",
+      "flyoutPanels": [],
+      "widgets": [
+        { "id": "layers", "type": "layers", "title": "Katmanlar", "enabled": false, "region": "right" },
+        { "id": "swatches", "type": "swatches", "title": "Swatches", "enabled": false, "region": "right" }
+      ]
+    }
+  }
+]

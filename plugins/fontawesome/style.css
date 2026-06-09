@@ -1,0 +1,156 @@
+.fontawesome-plugin {
+    display: grid;
+    gap: 16px;
+}
+
+.fontawesome-search-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 10px;
+}
+
+.fontawesome-search-input {
+    width: 100%;
+    min-height: 44px;
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    background: var(--control-bg);
+    color: var(--text);
+    padding: 0 14px;
+    outline: none;
+}
+
+.fontawesome-search-input:focus {
+    border-color: rgba(96, 165, 250, .5);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, .16);
+}
+
+.fontawesome-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.fontawesome-style-filters {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.fontawesome-style-chip {
+    min-height: 34px;
+    padding: 0 12px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: var(--control-bg);
+    color: var(--text);
+    cursor: pointer;
+    transition: .18s ease;
+}
+
+.fontawesome-style-chip:hover {
+    background: var(--control-hover);
+}
+
+.fontawesome-style-chip.active {
+    background: rgba(59, 130, 246, .16);
+    border-color: rgba(96, 165, 250, .45);
+}
+
+.fontawesome-count {
+    color: var(--muted);
+    font-size: 12px;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.fontawesome-results-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 12px;
+    max-height: min(56vh, 620px);
+    overflow: auto;
+    padding-right: 4px;
+}
+
+.fontawesome-card {
+    display: grid;
+    gap: 10px;
+    text-align: left;
+    border: 1px solid var(--border);
+    background:
+        linear-gradient(180deg, var(--control-bg), var(--panel-soft)),
+        var(--panel-soft);
+    color: var(--text);
+    border-radius: 18px;
+    padding: 14px;
+    cursor: pointer;
+    transition: transform .18s ease, border-color .18s ease, background .18s ease;
+}
+
+.fontawesome-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(96, 165, 250, .38);
+    background:
+        linear-gradient(180deg, rgba(59, 130, 246, .12), var(--panel-soft)),
+        var(--panel-soft);
+}
+
+.fontawesome-card-preview {
+    min-height: 92px;
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    background:
+        radial-gradient(circle at top, rgba(96, 165, 250, .18), transparent 58%),
+        var(--panel-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 44px;
+}
+
+.fontawesome-card-label {
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.35;
+    word-break: break-word;
+}
+
+.fontawesome-card-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.fontawesome-style-badge {
+    border-radius: 999px;
+    padding: 4px 8px;
+    background: var(--control-bg);
+    color: var(--muted);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    font-weight: 700;
+}
+
+.fontawesome-empty {
+    padding: 18px;
+    border-radius: 16px;
+    border: 1px dashed var(--border);
+    color: var(--muted);
+    text-align: center;
+    background: var(--panel-soft);
+}
+
+@media (max-width: 720px) {
+    .fontawesome-search-row {
+        grid-template-columns: 1fr;
+    }
+
+    .fontawesome-results-grid {
+        grid-template-columns: repeat(auto-fill, minmax(132px, 1fr));
+    }
+}

@@ -1,0 +1,109 @@
+.hero-patterns-search-input {
+    width: 100%;
+    min-width: 0;
+    height: 42px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: var(--control-bg);
+    color: var(--text);
+    padding: 0 14px;
+    outline: none;
+}
+
+.hero-patterns-search-input:focus {
+    border-color: rgba(59, 130, 246, 0.65);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.12);
+}
+
+.hero-patterns-controls {
+    align-items: end;
+}
+
+.hero-patterns-color-input {
+    width: 100%;
+    height: 42px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: var(--control-bg);
+    padding: 4px;
+    cursor: pointer;
+}
+
+.hero-patterns-plugin input[type="range"] {
+    width: 100%;
+}
+
+.hero-patterns-bg-color {
+    margin-top: 8px;
+}
+
+.hero-patterns-toolbar {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 14px;
+}
+
+.hero-patterns-count {
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.hero-patterns-results {
+    max-height: min(68vh, 720px);
+    overflow: auto;
+    padding-right: 4px;
+}
+
+.hero-patterns-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.hero-patterns-card {
+    border: 1px solid var(--border);
+    background: var(--panel-soft);
+    border-radius: 16px;
+    overflow: hidden;
+    padding: 0;
+    text-align: left;
+    cursor: pointer;
+    transition: transform 0.16s ease, border-color 0.16s ease, background 0.16s ease;
+}
+
+.hero-patterns-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(59, 130, 246, 0.35);
+    background: var(--control-hover);
+}
+
+.hero-patterns-card-preview {
+    width: 100%;
+    height: 110px;
+    background-size: cover;
+    background-position: center;
+    border-bottom: 1px solid var(--border);
+}
+
+.hero-patterns-card-body {
+    padding: 12px;
+}
+
+.hero-patterns-card-title {
+    color: var(--text);
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.hero-patterns-card-meta {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+@media (max-width: 720px) {
+    .hero-patterns-grid {
+        grid-template-columns: 1fr;
+    }
+}

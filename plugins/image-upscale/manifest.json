@@ -1,0 +1,5 @@
+{
+  "id": "image-upscale",
+  "name": "Image Upscale",
+  "entry": "index.js"
+}

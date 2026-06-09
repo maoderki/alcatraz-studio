@@ -1,0 +1,115 @@
+.template-functions-plugin {
+    display: grid;
+    gap: 16px;
+}
+
+.template-functions-plugin .tf-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.template-functions-plugin .tf-status {
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.template-functions-plugin .tf-list {
+    display: grid;
+    gap: 12px;
+    max-height: min(62vh, 680px);
+    overflow: auto;
+    padding-right: 4px;
+}
+
+.template-functions-plugin .tf-card,
+.template-functions-plugin .tf-empty {
+    border: 1px solid var(--border);
+    background: var(--panel-soft);
+    border-radius: 14px;
+    padding: 14px;
+}
+
+.template-functions-plugin .tf-empty {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.template-functions-plugin .tf-card-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.template-functions-plugin .tf-card-title {
+    min-width: 0;
+    color: var(--text-strong);
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.template-functions-plugin .tf-remove {
+    width: 34px;
+    height: 34px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--control-bg);
+    color: var(--muted);
+}
+
+.template-functions-plugin .tf-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+}
+
+.template-functions-plugin .tf-field {
+    display: grid;
+    gap: 6px;
+}
+
+.template-functions-plugin .tf-field-wide {
+    grid-column: 1 / -1;
+}
+
+.template-functions-plugin label {
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.template-functions-plugin input,
+.template-functions-plugin select {
+    width: 100%;
+    height: 38px;
+    min-width: 0;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--control-bg);
+    color: var(--text);
+    padding: 0 10px;
+    outline: none;
+}
+
+.template-functions-plugin .tf-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 760px) {
+    .template-functions-plugin .tf-grid {
+        grid-template-columns: 1fr;
+    }
+}

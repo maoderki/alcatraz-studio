@@ -1,0 +1,64 @@
+{
+  "plugins": [
+    {
+      "path": "template-functions",
+      "enabled": true
+    },
+    {
+      "path": "image-upscale",
+      "enabled": true
+    },
+    {
+      "path": "voice-command",
+      "enabled": true
+    },
+    {
+      "path": "act-ai",
+      "enabled": true
+    },
+    {
+      "path": "unsplash",
+      "enabled": true
+    },
+    {
+      "path": "pexels",
+      "enabled": true
+    },
+    {
+      "path": "country-flags",
+      "enabled": true
+    },
+    {
+      "path": "fontawesome",
+      "enabled": true
+    },
+    {
+      "path": "web-gradients",
+      "enabled": true
+    },
+    {
+      "path": "hero-patterns",
+      "enabled": true
+    },
+    {
+      "path": "brandfetch",
+      "enabled": true
+    },
+    {
+      "path": "colormind",
+      "enabled": true
+    },
+    {
+      "path": "x-api",
+      "enabled": true
+    },
+    {
+      "path": "football-teams",
+      "enabled": true
+    },
+    {
+      "path": "google-fonts",
+      "enabled": true
+    }
+  ]
+}

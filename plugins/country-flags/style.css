@@ -1,0 +1,135 @@
+.country-flags-plugin {
+    gap: 16px;
+}
+
+.country-flags-hero {
+    padding: 16px;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    background:
+        radial-gradient(circle at top left, rgba(14,165,233,.18), transparent 44%),
+        radial-gradient(circle at bottom right, rgba(37,99,235,.16), transparent 42%),
+        var(--panel-soft);
+}
+
+.country-flags-hero-title {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--text-strong);
+}
+
+.country-flags-hero-copy {
+    margin-top: 8px;
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--muted);
+}
+
+.country-flags-search-input {
+    width: 100%;
+    height: 46px;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    background: var(--control-bg);
+    color: var(--text);
+    padding: 0 14px;
+    outline: none;
+}
+
+.country-flags-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.country-flags-count {
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+.country-flags-results {
+    max-height: min(60vh, 620px);
+    overflow: auto;
+    padding-right: 4px;
+}
+
+.country-flags-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 8px;
+}
+
+.country-flag-card {
+    display: grid;
+    gap: 8px;
+    padding: 8px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--panel-soft);
+    color: inherit;
+    text-align: left;
+    cursor: pointer;
+    transition: transform .15s ease, border-color .15s ease, background .15s ease;
+}
+
+.country-flag-card:hover {
+    transform: translateY(-1px);
+    border-color: rgba(37,99,235,.42);
+    background: rgba(37,99,235,.08);
+}
+
+.country-flag-thumb-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 72px;
+    padding: 8px;
+    border-radius: 10px;
+    background:
+        linear-gradient(135deg, rgba(255,255,255,.04), rgba(255,255,255,.01)),
+        repeating-linear-gradient(
+            45deg,
+            rgba(255,255,255,.03) 0,
+            rgba(255,255,255,.03) 10px,
+            transparent 10px,
+            transparent 20px
+        );
+}
+
+.country-flag-thumb {
+    display: block;
+    width: 100%;
+    max-width: 120px;
+    height: auto;
+    border-radius: 6px;
+    box-shadow: 0 6px 16px rgba(0,0,0,.16);
+}
+
+.country-flag-body {
+    display: grid;
+    gap: 2px;
+}
+
+.country-flag-name {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-strong);
+    line-height: 1.35;
+}
+
+.country-flag-meta {
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: .04em;
+    text-transform: uppercase;
+}
+
+@media (max-width: 760px) {
+    .country-flags-grid {
+        grid-template-columns: 1fr;
+    }
+}

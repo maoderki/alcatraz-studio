@@ -1,0 +1,126 @@
+.webgradients-toolbar {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.webgradients-toolbar-secondary {
+    justify-content: space-between;
+    margin-bottom: 14px;
+}
+
+.webgradients-search-input {
+    width: 100%;
+    min-width: 0;
+    height: 42px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: var(--control-bg);
+    color: var(--text);
+    padding: 0 14px;
+    outline: none;
+}
+
+.webgradients-search-input:focus {
+    border-color: rgba(59, 130, 246, 0.65);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.12);
+}
+
+.webgradients-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.webgradients-count {
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.webgradients-results {
+    max-height: min(68vh, 720px);
+    overflow: auto;
+    padding-right: 4px;
+}
+
+.webgradients-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.webgradients-card {
+    border: 1px solid var(--border);
+    background: var(--panel-soft);
+    border-radius: 16px;
+    overflow: hidden;
+    padding: 0;
+    text-align: left;
+    cursor: pointer;
+    transition: transform 0.16s ease, border-color 0.16s ease, background 0.16s ease;
+}
+
+.webgradients-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(59, 130, 246, 0.35);
+    background: var(--control-hover);
+}
+
+.webgradients-card-preview {
+    height: 104px;
+    width: 100%;
+}
+
+.webgradients-card-body {
+    padding: 12px;
+}
+
+.webgradients-card-title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 6px;
+}
+
+.webgradients-card-title {
+    color: var(--text);
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.webgradients-favorite {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    padding: 4px 8px;
+    background: rgba(245, 158, 11, 0.16);
+    color: #fbbf24;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.webgradients-card-meta {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+@media (max-width: 720px) {
+    .webgradients-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .webgradients-toolbar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .webgradients-toolbar-secondary {
+        flex-direction: row;
+        align-items: center;
+    }
+}

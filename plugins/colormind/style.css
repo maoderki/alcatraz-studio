@@ -1,0 +1,139 @@
+.colormind-plugin .colormind-action-panel {
+    display: grid;
+    gap: 14px;
+    margin-bottom: 16px;
+}
+
+.colormind-plugin .colormind-action-group {
+    padding: 14px;
+    border-radius: 18px;
+    border: 1px solid var(--border);
+    background:
+        linear-gradient(180deg, var(--control-bg), var(--panel-soft)),
+        var(--panel-soft);
+}
+
+.colormind-plugin .colormind-group-label {
+    margin-bottom: 10px;
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+}
+
+.colormind-plugin .colormind-actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+}
+
+.colormind-plugin .colormind-actions-secondary {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.colormind-plugin .colormind-btn-primary,
+.colormind-plugin .colormind-btn-secondary,
+.colormind-plugin .colormind-btn-ghost {
+    width: 100%;
+    min-height: 46px;
+    border-radius: 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    transition: transform .16s ease, border-color .16s ease, background .16s ease, opacity .16s ease;
+}
+
+.colormind-plugin .colormind-btn-primary:hover,
+.colormind-plugin .colormind-btn-secondary:hover,
+.colormind-plugin .colormind-btn-ghost:hover {
+    transform: translateY(-1px);
+}
+
+.colormind-plugin .colormind-btn-secondary,
+.colormind-plugin .colormind-btn-ghost {
+    border: 1px solid var(--border);
+    background: var(--control-bg);
+    color: var(--text-strong);
+}
+
+.colormind-plugin .colormind-btn-secondary:hover,
+.colormind-plugin .colormind-btn-ghost:hover {
+    border-color: rgba(59,130,246,.32);
+    background: var(--control-hover);
+}
+
+.colormind-plugin .colormind-btn-ghost:disabled,
+.colormind-plugin .colormind-btn-secondary:disabled,
+.colormind-plugin .colormind-btn-primary:disabled {
+    opacity: .45;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.colormind-plugin .colormind-palette {
+    margin-top: 14px;
+}
+
+.colormind-plugin .colormind-palette-grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.colormind-plugin .colormind-swatch-card {
+    padding: 0;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    background: var(--panel-soft);
+    cursor: pointer;
+    text-align: left;
+    transition: transform .16s ease, border-color .16s ease, background .16s ease;
+}
+
+.colormind-plugin .colormind-swatch-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(59,130,246,.35);
+    background: var(--control-hover);
+}
+
+.colormind-plugin .colormind-swatch-preview {
+    height: 110px;
+    width: 100%;
+}
+
+.colormind-plugin .colormind-swatch-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 10px 12px;
+}
+
+.colormind-plugin .colormind-swatch-index {
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.colormind-plugin .colormind-swatch-hex {
+    color: var(--text-strong);
+    font-size: 12px;
+    font-weight: 700;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+@media (max-width: 760px) {
+    .colormind-plugin .colormind-actions {
+        grid-template-columns: 1fr;
+    }
+
+    .colormind-plugin .colormind-palette-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}

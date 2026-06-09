@@ -1,0 +1,150 @@
+.brandfetch-plugin .brandfetch-search-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0;
+    align-items: center;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    background: var(--control-bg);
+}
+
+.brandfetch-plugin .brandfetch-search-input {
+    width: 100%;
+    height: 44px;
+    min-width: 0;
+    padding: 0 14px;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    color: var(--text);
+}
+
+.brandfetch-plugin .brandfetch-search-btn {
+    height: 44px;
+    padding: 0 18px;
+    border-radius: 0;
+    border-left: 1px solid var(--border);
+    white-space: nowrap;
+    box-shadow: none;
+}
+
+.brandfetch-plugin .brandfetch-toolbar {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 14px;
+}
+
+.brandfetch-plugin .brandfetch-count {
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.brandfetch-plugin .brandfetch-results {
+    max-height: min(68vh, 720px);
+    overflow: auto;
+    padding-right: 4px;
+}
+
+.brandfetch-plugin .brandfetch-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.brandfetch-plugin .brandfetch-card {
+    overflow: hidden;
+    border-radius: 18px;
+    border: 1px solid var(--border);
+    background: var(--panel-soft);
+}
+
+.brandfetch-plugin .brandfetch-logo-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 110px;
+    padding: 20px;
+    background:
+        linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.015)),
+        repeating-linear-gradient(
+            45deg,
+            rgba(255,255,255,.03) 0,
+            rgba(255,255,255,.03) 10px,
+            transparent 10px,
+            transparent 20px
+        );
+}
+
+.brandfetch-plugin .brandfetch-logo {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.brandfetch-plugin .brandfetch-card-body {
+    display: grid;
+    gap: 8px;
+    padding: 12px;
+}
+
+.brandfetch-plugin .brandfetch-title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.brandfetch-plugin .brandfetch-card-title {
+    color: var(--text-strong);
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+.brandfetch-plugin .brandfetch-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 8px;
+    border-radius: 999px;
+    background: rgba(16,185,129,.14);
+    color: #34d399;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.brandfetch-plugin .brandfetch-card-meta {
+    color: var(--muted);
+    font-size: 12px;
+    word-break: break-word;
+}
+
+.brandfetch-plugin .brandfetch-card-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.brandfetch-plugin .brandfetch-insert-btn {
+    width: 100%;
+    height: 40px;
+    border-radius: 12px;
+}
+
+@media (max-width: 760px) {
+    .brandfetch-plugin .brandfetch-search-row {
+        grid-template-columns: 1fr;
+    }
+
+    .brandfetch-plugin .brandfetch-grid {
+        grid-template-columns: 1fr;
+    }
+}

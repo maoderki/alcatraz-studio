@@ -1,0 +1,9 @@
+[
+  { "label": "Siyahlar", "colors": ["#000000","#1a1a2e","#16213e","#0f3460","#1b262c"] },
+  { "label": "Beyazlar", "colors": ["#ffffff","#f8f9fa","#e9ecef","#dee2e6","#ced4da"] },
+  { "label": "Kırmızılar", "colors": ["#ff0000","#e63946","#c1121f","#9d0208","#6a040f"] },
+  { "label": "Turuncular", "colors": ["#ff6b00","#fb8500","#ffb703","#ffd60a","#ffc300"] },
+  { "label": "Yeşiller", "colors": ["#2dc653","#06d6a0","#00b4d8","#0077b6","#023e8a"] },
+  { "label": "Morlar", "colors": ["#7b2d8b","#9d4edd","#c77dff","#ff6b9d","#ff9a9e"] },
+  { "label": "Griler", "colors": ["#6c757d","#495057","#343a40","#212529","#adb5bd"] }
+]
