@@ -1,6 +1,6 @@
 const ACT_AI_STYLE_ID = 'studio-plugin-act-ai-style';
 const ACT_AI_APP_ID = 'studio';
-const ACT_AI_API_URL = window.STUDIO_ACT_AI_API_URL || new URL('../act-ai/chat.php', window.location.href).toString();
+const ACT_AI_API_URL = window.STUDIO_ACT_AI_API_URL || new URL('https://map.alcatrazgroup.com/act-ai/chat.php', window.location.href).toString();
 const ACT_AI_CHAT_STORAGE_KEY = 'alcatraz_studio_act_ai_chat';
 const ACT_AI_SESSION_STORAGE_KEY = 'alcatraz_studio_act_ai_session';
 const ACT_AI_WELCOME_MESSAGE = 'Merhaba. Studio’da ne yapalım?';
