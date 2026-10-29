@@ -1,5 +1,5 @@
 function updateDocumentTitle() {
-    document.title = projectName + ' — Alcatraz Studio';
+    document.title = projectName + ' — Alcatraz | Studio';
 }
 
 const STUDIO_THEME_STORAGE_KEY = 'alcatraz_studio_theme';
